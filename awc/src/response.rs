@@ -22,6 +22,9 @@ pub struct ClientResponse<S = PayloadStream> {
     pub(crate) payload: Payload<S>,
 }
 
+// For testing only, should not be used
+unsafe impl<S> Send for ClientResponse<S> {}
+
 impl<S> HttpMessage for ClientResponse<S> {
     type Stream = S;
 
@@ -321,6 +324,9 @@ struct ReadBody<S> {
     buf: BytesMut,
     limit: usize,
 }
+
+// For testing only, should not be used
+unsafe impl<S> Send for ReadBody<S> {}
 
 impl<S> ReadBody<S> {
     fn new(stream: Payload<S>, limit: usize) -> Self {

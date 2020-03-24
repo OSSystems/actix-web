@@ -72,6 +72,9 @@ use self::connect::{Connect, ConnectorWrapper};
 #[derive(Clone)]
 pub struct Client(Rc<ClientConfig>);
 
+// For testing only, should not be used
+unsafe impl Send for Client {}
+
 pub(crate) struct ClientConfig {
     pub(crate) connector: RefCell<Box<dyn Connect>>,
     pub(crate) headers: HeaderMap,

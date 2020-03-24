@@ -61,6 +61,9 @@ pub enum SendClientRequest {
     Err(Option<SendRequestError>),
 }
 
+// For testing only, should not be used
+unsafe impl Send for SendClientRequest {}
+
 impl SendClientRequest {
     pub(crate) fn new(
         send: Pin<Box<dyn Future<Output = Result<ClientResponse, SendRequestError>>>>,

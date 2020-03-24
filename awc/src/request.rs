@@ -60,6 +60,9 @@ pub struct ClientRequest {
     config: Rc<ClientConfig>,
 }
 
+// For testing only, should not be used
+unsafe impl Send for ClientRequest {}
+
 impl ClientRequest {
     /// Create new client request builder.
     pub(crate) fn new<U>(method: Method, uri: U, config: Rc<ClientConfig>) -> Self
